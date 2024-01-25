@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.movies h2 {
+  margin: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.movies p {
+  margin: 10px;
+}
+
+.card-movie {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e3e3e3;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 5px #ccc;
+  max-width: 200px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.card-movie img {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
