@@ -9,7 +9,7 @@ const formatDate = (date) => {
 const Movies = ({ movies }) => {
   return <div className="movies">
     {movies.map((movie) => {
-    return <Link to={`/details/${movie.id}`}>
+    return <Link to={`/details/${movie.id}`} key={movie.id}>
       <div className="card-movie">
         <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.overview} />
         <h2>{movie.original_title}</h2>

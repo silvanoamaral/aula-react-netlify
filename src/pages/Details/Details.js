@@ -1,41 +1,48 @@
-// import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+
+const apiKey = 'e2c70d159f475c3cf6bd625fd21f2312';
 
 const Details = () => {
-    // const parameters = useParams();
+    const parameters = useParams();
+    const [loading, setLoading] = useState(false);
+    const [movie, setMovie] = useState(null);
 
-    // const [user, setUser] = useState(undefined);
+    useEffect(() => {
+        const { idMovie } = parameters;
 
-    // useEffect(() => {
-    //     const { id } = parameters;
-    //     const result = users.find((element) => element.id === id);
-    //     if (!result) {
-    //         setUser(null);
-    //         return;
-    //     }
-    //     setUser(result);
-    // }, [parameters]);
+        if (idMovie) {
+            setLoading(true);
+
+            fetch(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=${apiKey}&language=pt-BR`)
+            .then(res => {
+                return res.json()
+            })
+            .then(response => {
+                setLoading(false);
+                setMovie(response)
+            })
+            .catch(error => {
+                console.log('Error:.', error)
+            })
+        }
+    }, [parameters]);
 
     return (
         <div>
             <h1>Detalhes</h1>
-            {/* {user === undefined && (
-                <div>
-                    <p>Carregando...</p>
-                </div>
-            )}
-            {user === null && (
-                <div>
-                    <p>Usuário não encontrado.</p>
-                </div>
-            )}
-            {user && (
-                <div>
-                    <img alt={user.image.alt} src={user.image.src} width="250px" height="auto" />
-                    <h2>{user.name}</h2>
-                    <p>{user.description}</p>
-                </div>
-            )} */}
+            {loading && <h2>Carregando...</h2>}
+
+            {movie && 
+                <>
+                    <p>{movie.title}</p>
+                    <p>{movie.overview}</p>
+                    <p>{movie.vote_average}%</p>
+
+                    <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt={movie.overview} />
+                </>
+            }
+            <br />
             <Link to='/'>Voltar</Link>
         </div>
     );
