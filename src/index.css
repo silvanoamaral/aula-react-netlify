@@ -17,3 +17,22 @@ a {
   text-decoration: none;
   color: #000;
 }
+
+.page-details {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.btn-voltar {
+  margin: 30px;
+  display: block;
+  background: #ccc;
+  width: 200px;
+  text-align: center;
+  align-content: center;
+  border-radius: 10px;
+  padding: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+}

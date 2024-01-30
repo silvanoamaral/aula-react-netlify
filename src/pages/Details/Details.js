@@ -29,8 +29,7 @@ const Details = () => {
     }, [parameters]);
 
     return (
-        <div>
-            <h1>Detalhes</h1>
+        <div className='page-details'>
             {loading && <h2>Carregando...</h2>}
 
             {movie && 
@@ -43,7 +42,7 @@ const Details = () => {
                 </>
             }
             <br />
-            <Link to='/'>Voltar</Link>
+            <Link to='/' className='btn-voltar'>Voltar</Link>
         </div>
     );
 };
