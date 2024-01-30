@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const Details = () => {
-    const parameters = useParams();
+    // const parameters = useParams();
 
-    const [user, setUser] = useState(undefined);
+    // const [user, setUser] = useState(undefined);
 
     // useEffect(() => {
     //     const { id } = parameters;
@@ -19,7 +19,7 @@ const Details = () => {
     return (
         <div>
             <h1>Detalhes</h1>
-            {user === undefined && (
+            {/* {user === undefined && (
                 <div>
                     <p>Carregando...</p>
                 </div>
@@ -35,7 +35,7 @@ const Details = () => {
                     <h2>{user.name}</h2>
                     <p>{user.description}</p>
                 </div>
-            )}
+            )} */}
             <Link to='/'>Voltar</Link>
         </div>
     );
