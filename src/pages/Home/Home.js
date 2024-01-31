@@ -1,35 +1,19 @@
-import { useEffect, useState } from 'react';
 import Movies from '../../Movies';
 
-const apiKey = 'e2c70d159f475c3cf6bd625fd21f2312';
+import { Loading } from '../../components';
+
+import { useFetch } from '../../hooks/useFetch';
+
+import { API_KEY_THE_MOVIE } from '../../config';
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [loading, data] = useFetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY_THE_MOVIE}&language=pt-BR&page=1`)
 
-  useEffect(() => {
-    setLoading(true);
+  if (loading) {
+    return <Loading mensagem="Carregando os Vídeos..." />
+  }
 
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`)
-    .then(res => {
-      return res.json()
-    })
-    .then(response => {
-      setLoading(false);
-      setMovies(response.results)
-    })
-    .catch(error => {
-      console.log('Error:.', error)
-    })
-  }, []);
-
-    return (
-       <>
-            {loading && <h2>Carregando...</h2>}
-
-            <Movies movies={movies} />
-        </>
-    );
+  return (<Movies movies={data?.results || []} />);
 };
 
 export default Home;
